@@ -11,7 +11,7 @@ public class Main {
         int start = 0;
         for (int i = 0; i < line.length(); i++) {
             if (line.charAt(i) != ' ') {
-                line.replace(i,i+1, "" + Character.toUpperCase(line.charAt(i)));
+                line.replace(i, i+1, "" + Character.toUpperCase(line.charAt(i)));
                 start = i;
                 break;
             }
@@ -19,7 +19,7 @@ public class Main {
         for (int i = start; i < line.length(); i++) {
             if (i < 2) {
                 continue;
-            } else if (line.charAt(i) != ' ' && line.charAt(i-2) == '.') {
+            } else if (line.charAt(i) != ' ' && (line.charAt(i-2) == '.' || line.charAt(i-1) == '.')) {
                 line.replace(i,i+1, "" + Character.toUpperCase(line.charAt(i)));
             }
         }

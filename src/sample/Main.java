@@ -1,29 +1,23 @@
 package sample;
 
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Input line: ");
-        StringBuilder line = new StringBuilder(in.nextLine().trim()); //добавляем строку без пробелов по краям
 
-        line.replace(0, 1, "" + Character.toUpperCase(line.charAt(0))); //переводим в верх. регистр 1 символ
+        String[] sentences = in.nextLine().trim().split(".");
 
-        for (int i = 1; i < line.length(); i++) {
-            if (line.charAt(i) == '.' && i != line.length() - 1) {
-                for (int j = i + 1;; j++) {
-                    if (line.charAt(j) != ' ') {
-                        line.replace(j, j + 1, "" + Character.toUpperCase(line.charAt(j)));
-                        i = j;
-                        break;
-                    }
-                }
-            }
+        StringJoiner joiner = new StringJoiner(".");
+
+        for (String sentence: sentences) {
+            joiner.add(Character.toUpperCase(sentence.charAt(0)) + sentence.substring(1));
         }
 
-        System.out.println(line);
+        System.out.println(joiner.toString());
         in.close();
     }
 }
